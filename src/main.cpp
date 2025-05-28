@@ -12,21 +12,10 @@
 /* ==== Time Vars ==== */
 unsigned long currentMillis = 0;
 
-/* ==== Relay Vars ==== */
-bool relayEnabled = false;
-
-/* ==== Button Vars ==== */
-bool funcPressed = false;
-bool enablePressed = false;
-
-
-bool ledEnabled = false;
-
 void setup()
 {
-  pinMode(1, OUTPUT);
   SCREEN::init();
-  SCREEN::print("test");
+  RELAY::init(RELAY_PIN);
 }
 
 void loop()
@@ -34,4 +23,11 @@ void loop()
   currentMillis = millis();
   SCREEN::setCursor(0, 1);
   SCREEN::print(int(currentMillis/1000));
+
+  RELAY::toggle();
+
+  SCREEN::setCursor(0, 0);
+  SCREEN::print((RELAY::getState()) ? "enabled  " : "disabled  ");
+
+  delay(1000);
 }
