@@ -3,7 +3,9 @@
 
 namespace RELAY
 {
-    
+    void init(int relayPin);
+    void toggle();
+    bool getState();
 }
 
 #endif
