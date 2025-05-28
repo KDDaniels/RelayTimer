@@ -23,12 +23,12 @@ namespace SCREEN
         lcd.print(message);
     }
 
-    void print(int message)
+    void print(uint8_t message)
     {
         lcd.print(message);
     }
 
-    void setCursor(int row, int col)
+    void setCursor(uint8_t row, uint8_t col)
     {
         lcd.setCursor(row, col);
     }

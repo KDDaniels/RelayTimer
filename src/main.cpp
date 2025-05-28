@@ -1,18 +1,37 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+#include "buttons.h"
+#include "display.h"
+#include "relay.h"
+#include "timer.h"
 
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+#define RELAY_PIN 1
+#define FUNC_BTN 3
+#define TOGGLE_BTN 4
+
+/* ==== Time Vars ==== */
+unsigned long currentMillis = 0;
+
+/* ==== Relay Vars ==== */
+bool relayEnabled = false;
+
+/* ==== Button Vars ==== */
+bool funcPressed = false;
+bool enablePressed = false;
+
+
+bool ledEnabled = false;
+
+void setup()
+{
+  pinMode(1, OUTPUT);
+  SCREEN::init();
+  SCREEN::print("test");
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void loop()
+{
+  currentMillis = millis();
+  SCREEN::setCursor(0, 1);
+  SCREEN::print(int(currentMillis/1000));
 }
