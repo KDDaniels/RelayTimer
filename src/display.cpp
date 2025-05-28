@@ -23,8 +23,20 @@ namespace SCREEN
         lcd.print(message);
     }
 
+    void print(const char* message, int row, int col)
+    {
+        setCursor(row, col);
+        lcd.print(message);
+    }
+
     void print(int message)
     {
+        lcd.print(message);
+    }
+
+    void print(int message, int row, int col)
+    {
+        setCursor(row, col);
         lcd.print(message);
     }
 
