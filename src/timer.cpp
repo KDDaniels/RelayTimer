@@ -1,11 +1,32 @@
 #include "timer.h"
 #include <Arduino.h>
 
+/*
+
+NEEDED:
+vars:
+now (currentMillis)
+timeRemaining (time left for countdown)
+timeRemainingBtn (time left to consider button held)
+lastUpdate (last time updated, now-lastUpdate = time to subtract from timeRemaining)
+
+
+functions:
+update -> update current time
+updateTimer -> update time remaining
+
+
+
+
+*/
+
 namespace
 {
-    unsigned long currentMillis = 0;
-    unsigned long timerTarget = 0;
-    unsigned long interval = 1000;
+    unsigned long now = 0;
+
+    unsigned long timeRemaining = 0;
+    unsigned long timeRemainingBtn = 1000;
+    unsigned long lastUpdate = 0;
 
     char buffer[8];
 }
@@ -22,68 +43,23 @@ namespace TIMER
 {
     void update()
     {
-        currentMillis = millis();
+        now = millis();
     }
 
-    unsigned long getCurrentTime()
+    void updateTimeRemaining()
     {
-        return currentMillis;
+        timeRemaining = ((now-lastUpdate) >= timeRemaining) ? 0 : timeRemaining - (now-lastUpdate);
+        lastUpdate = now;
     }
 
-    unsigned long getCurrentTime(int type)
+    void setTimeRemaining(unsigned long time)
     {
-        unsigned long t;
-
-        switch(type)
-        {
-            case(0):
-                t = TIME_DEFS::MILLIS; // not necessary but looks better
-                break;
-            case(1):
-                t = TIME_DEFS::SECOND;
-                break;
-            case(2):
-                t = TIME_DEFS::MINUTE;
-                break;
-            case(3):
-                t = TIME_DEFS::HOUR;
-                break;
-                
-            default:
-                break;
-        }
-        
-        return (currentMillis / t);
-    }
-
-    unsigned long getTargetTime(unsigned long interval)
-    {
-        return (currentMillis + interval);
-    }
-
-    bool hasIntervalPassed()
-    {
-        return (currentMillis >= timerTarget);
-    }
-
-    bool hasIntervalPassed(unsigned long targetTime)
-    {
-        return (currentMillis >= targetTime);
-    }
-
-    void setInterval(unsigned long val)
-    {
-        interval = val;
-    }
-
-    void setTimerTarget(unsigned long interval)
-    {
-        timerTarget = currentMillis + interval;
+        timeRemaining = time;
     }
 
     unsigned long getTimeRemaining()
     {
-        return (timerTarget - currentMillis);
+        return timeRemaining;
     }
 
     char* getTimeRemainingFormatted()
@@ -97,4 +73,16 @@ namespace TIMER
         sprintf(buffer, "%01u:%02u:%02u", hour, min, sec);
         return buffer;
     }
+
+    char* getTimeRemainingFormatted(unsigned long time)
+    {
+        unsigned long timeLeft = time;
+        unsigned int totalSeconds = timeLeft / 1000;
+        unsigned int hour = (totalSeconds / 60 / 60) % 60;
+        unsigned int min = (totalSeconds / 60) % 60;
+        unsigned int sec = totalSeconds % 60;
+
+        sprintf(buffer, "%01u:%02u:%02u", hour, min, sec);
+        return buffer;
+    } 
 }
