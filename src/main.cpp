@@ -9,6 +9,8 @@
 #define FUNC_BTN 3
 #define TOGGLE_BTN 4
 
+bool isRunning = false;
+
 void setup()
 {
   SCREEN::init();
@@ -20,12 +22,20 @@ void loop()
 {
   TIMER::update();
   
-  if (TIMER::hasIntervalPassed())
+  // if enabled == true
+  if (isRunning == true)
   {
-    RELAY::toggle();
-    TIMER::setTimerTarget(5000);
+    if (TIMER::hasIntervalPassed())
+    {
+      // enabled == false
+      RELAY::toggle();
+      TIMER::setTimerTarget(10000); // pass desired delay as arg
+    }
+  
+    SCREEN::print("Time remaining: ", 0, 0);
+    SCREEN::print(TIMER::getTimeRemainingFormatted(), 0, 1);
   }
 
-  SCREEN::print("Time remaining: ", 0, 0);
-  SCREEN::print(TIMER::getTimeRemainingFormatted(), 0, 1);
+  // else
+  // print out adjustable time w/ text
 }
