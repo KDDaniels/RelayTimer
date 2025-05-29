@@ -27,4 +27,13 @@ namespace RELAY
         return isEnabled;
     }
 
+    void enable()
+    {
+        digitalWrite(pin, HIGH);
+    }
+    
+    void disable()
+    {
+        digitalWrite(pin, LOW);
+    }
 }
