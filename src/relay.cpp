@@ -1,39 +1,26 @@
 #include "relay.h"
-#include <Arduino.h>
 
 namespace
 {
-    bool isEnabled = false;
-    int pin;
+    uint8_t pin;
 }
 
 namespace RELAY
 {
-    void init(int relayPin)
+    void init(uint8_t relayPin)
     {
         pin = relayPin;
-        pinMode(pin, OUTPUT);
-        digitalWrite(pin, LOW);
-    }
-
-    void toggle()
-    {
-        isEnabled = !isEnabled;
-        digitalWrite(pin, isEnabled);
-    }
-
-    bool getState()
-    {
-        return isEnabled;
+        DDRB |= (1 << pin);
+        PORTB &= ~(1 << pin);
     }
 
     void enable()
     {
-        digitalWrite(pin, HIGH);
+        PORTB |= (1 << pin);
     }
     
     void disable()
     {
-        digitalWrite(pin, LOW);
+        PORTB &= ~(1 << pin);
     }
 }
