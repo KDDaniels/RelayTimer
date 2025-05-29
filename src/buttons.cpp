@@ -1,32 +1,34 @@
 #include "buttons.h"
-#include <Arduino.h>
 
 namespace
 {
-    int fPin;
-    int tPin;
-    bool fPinPressed = false;
-    bool tPinPressed = false;
+    uint8_t fPin;
+    uint8_t tPin;
 }
 
 namespace BUTTONS
 {
-    void init(int funcPin, int togglePin)
+    void init(uint8_t funcPin, uint8_t togglePin)
     {
         fPin = funcPin;
         tPin = togglePin;
 
-        pinMode(fPin, INPUT_PULLUP);
-        pinMode(tPin, INPUT_PULLUP);
+        // Enable fPin as INPUT and PULLUP
+        DDRB &= ~(1 << fPin);
+        PORTB |= (1 << fPin);
+        
+        // Enable tPin as INPUT and PULLUP
+        DDRB &= ~(1 << tPin);
+        PORTB |= (1 << tPin);
     }
 
     bool isfPinPressed()
     {
-        return (digitalRead(fPin) == LOW);
+        return !(PINB & (1 << fPin));
     }
 
     bool istPinPressed()
     {
-        return (digitalRead(tPin) == LOW);
+        return !(PINB & (1 << tPin));
     }
 }
