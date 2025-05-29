@@ -1,42 +1,23 @@
 #include "timer.h"
-#include <Arduino.h>
-
-/*
-
-NEEDED:
-vars:
-now (currentMillis)
-timeRemaining (time left for countdown)
-timeRemainingBtn (time left to consider button held)
-lastUpdate (last time updated, now-lastUpdate = time to subtract from timeRemaining)
-
-
-functions:
-update -> update current time
-updateTimer -> update time remaining
-
-
-
-
-*/
 
 namespace
 {
-    unsigned long now = 0;
+    uint32_t now = 0;
 
-    unsigned long timeRemaining = 0;
-    unsigned long timeRemainingBtn = 1000;
-    unsigned long lastUpdate = 0;
+    uint32_t timeRemaining = 0;
+    uint32_t lastUpdate = 0;
+
+    bool isPaused = false;
 
     char buffer[8];
 }
 
 namespace TIME_DEFS
 {
-    constexpr unsigned long MILLIS = 1;
-    constexpr unsigned long SECOND = 1000;
-    constexpr unsigned long MINUTE = 60 * SECOND;
-    constexpr unsigned long HOUR = 60 * MINUTE;
+    constexpr uint32_t MILLIS = 1;
+    constexpr uint32_t SECOND = 1000;
+    constexpr uint32_t MINUTE = 60 * SECOND;
+    constexpr uint32_t HOUR = 60 * MINUTE;
 }
 
 namespace TIMER
@@ -48,41 +29,73 @@ namespace TIMER
 
     void updateTimeRemaining()
     {
-        timeRemaining = ((now-lastUpdate) >= timeRemaining) ? 0 : timeRemaining - (now-lastUpdate);
-        lastUpdate = now;
+        if (!isPaused)
+        {
+            uint32_t elapsed = now - lastUpdate;
+            timeRemaining = (elapsed >= timeRemaining) ? 0 : timeRemaining - elapsed;
+            lastUpdate = now;
+        }
     }
 
-    void setTimeRemaining(unsigned long time)
+    void setTimeRemaining(uint32_t time)
     {
         timeRemaining = time;
     }
 
-    unsigned long getTimeRemaining()
+    uint32_t getTimeRemaining()
     {
         return timeRemaining;
     }
 
     char* getTimeRemainingFormatted()
     {
-        unsigned long timeLeft = getTimeRemaining();
-        unsigned int totalSeconds = timeLeft / 1000;
-        unsigned int hour = (totalSeconds / 60 / 60) % 60;
-        unsigned int min = (totalSeconds / 60) % 60;
-        unsigned int sec = totalSeconds % 60;
+        uint32_t timeLeft = getTimeRemaining();
+        uint16_t totalSeconds = timeLeft / 1000;
+        uint16_t hour = (totalSeconds / 60 / 60) % 60;
+        uint16_t min = (totalSeconds / 60) % 60;
+        uint16_t sec = totalSeconds % 60;
 
         sprintf(buffer, "%01u:%02u:%02u", hour, min, sec);
         return buffer;
     }
 
-    char* getTimeRemainingFormatted(unsigned long time)
+    char* getTimeRemainingFormatted(uint32_t time)
     {
-        unsigned long timeLeft = time;
-        unsigned int totalSeconds = timeLeft / 1000;
-        unsigned int hour = (totalSeconds / 60 / 60) % 60;
-        unsigned int min = (totalSeconds / 60) % 60;
-        unsigned int sec = totalSeconds % 60;
+        uint32_t timeLeft = time;
+        uint16_t totalSeconds = timeLeft / 1000;
+        uint16_t hour = (totalSeconds / 60 / 60) % 60;
+        uint16_t min = (totalSeconds / 60) % 60;
+        uint16_t sec = totalSeconds % 60;
 
         sprintf(buffer, "%01u:%02u:%02u", hour, min, sec);
         return buffer;
-    } 
+    }
+
+    void pause()
+    {
+        isPaused = true;
+    }
+
+    void unpause()
+    {
+        isPaused = false;
+        lastUpdate = now;
+    }
+
+    void togglePause()
+    {
+        if (isPaused)
+        {
+            unpause();
+        }
+        else
+        {
+            pause();
+        }
+    }
+
+    bool paused()
+    {
+        return isPaused;
+    }
 }
