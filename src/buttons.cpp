@@ -4,6 +4,7 @@ namespace
 {
     uint8_t fPin;
     uint8_t tPin;
+    bool held = false;
 }
 
 namespace BUTTONS
@@ -30,5 +31,20 @@ namespace BUTTONS
     bool istPinPressed()
     {
         return !(PINB & (1 << tPin));
+    }
+
+    bool isHeld()
+    {
+        return held;
+    }
+
+    void holding()
+    {
+        held = true;
+    }
+
+    void notHolding()
+    {
+        held = false;
     }
 }

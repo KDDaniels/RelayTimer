@@ -9,6 +9,9 @@ namespace BUTTONS
     void init(uint8_t funcPin, uint8_t togglePin);
     bool isfPinPressed();
     bool istPinPressed();
+    bool isHeld();
+    void holding();
+    void notHolding();
 }
 
 #endif
