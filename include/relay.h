@@ -9,6 +9,7 @@ namespace RELAY
     void init(uint8_t relayPin);
     void enable();
     void disable();
+    void toggle();
 }
 
 #endif

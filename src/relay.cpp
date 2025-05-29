@@ -23,4 +23,9 @@ namespace RELAY
     {
         PORTB &= ~(1 << pin);
     }
+
+    void toggle()
+    {
+        PORTB ^= (1 << pin);
+    }
 }
