@@ -2190,6 +2190,12 @@
 		(uuid "23657fa6-1e14-49ba-a95b-edccc5666beb")
 	)
 	(junction
+		(at 241.3 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "28453209-df78-455b-8710-6aa27a5239e6")
+	)
+	(junction
 		(at 60.96 68.58)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2206,12 +2212,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4cc1e401-cf96-4200-bfe2-99ade04e82d6")
-	)
-	(junction
-		(at 241.3 67.31)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "580ec40a-cde2-41b2-8b6d-d4e407b16df9")
 	)
 	(junction
 		(at 147.32 85.09)
@@ -2291,16 +2291,6 @@
 	)
 	(wire
 		(pts
-			(xy 224.79 67.31) (xy 231.14 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0d2c45e8-bdea-4c93-862a-576304fa720b")
-	)
-	(wire
-		(pts
 			(xy 72.39 55.88) (xy 107.95 55.88)
 		)
 		(stroke
@@ -2368,6 +2358,16 @@
 			(type default)
 		)
 		(uuid "230120bb-52bc-4107-ab91-f09c970a66e0")
+	)
+	(wire
+		(pts
+			(xy 241.3 67.31) (xy 241.3 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "250be16c-2fcf-4446-a7bc-8e28951520b7")
 	)
 	(wire
 		(pts
@@ -2561,16 +2561,6 @@
 	)
 	(wire
 		(pts
-			(xy 241.3 64.77) (xy 241.3 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "75782644-1d3f-4ec2-90b3-fc3f4961a25d")
-	)
-	(wire
-		(pts
 			(xy 55.88 77.47) (xy 55.88 80.01)
 		)
 		(stroke
@@ -2641,7 +2631,17 @@
 	)
 	(wire
 		(pts
-			(xy 241.3 77.47) (xy 241.3 67.31)
+			(xy 238.76 67.31) (xy 241.3 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "889cd997-e143-4e85-a2e2-14b9fee37c2b")
+	)
+	(wire
+		(pts
+			(xy 241.3 64.77) (xy 241.3 67.31)
 		)
 		(stroke
 			(width 0)
@@ -2841,13 +2841,13 @@
 	)
 	(wire
 		(pts
-			(xy 238.76 67.31) (xy 241.3 67.31)
+			(xy 224.79 67.31) (xy 231.14 67.31)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ffe3fee5-d07b-4ad7-8155-14e15a563f1d")
+		(uuid "eedf9241-7e52-46a8-a99d-55076e03fa96")
 	)
 	(rectangle
 		(start 66.04 106.68)
@@ -4628,7 +4628,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 234.95 67.31 90)
+		(at 234.95 67.31 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4636,7 +4636,7 @@
 		(dnp no)
 		(uuid "b2b81edf-46ce-47d5-992d-354e2eebf7ad")
 		(property "Reference" "R6"
-			(at 234.696 65.278 90)
+			(at 235.204 65.278 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4645,7 +4645,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 237.49 65.278 90)
+			(at 232.41 65.278 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4654,7 +4654,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P2.54mm_Vertical"
-			(at 234.95 69.088 90)
+			(at 234.95 65.532 90)
 			(effects
 				(font
 					(size 1.27 1.27)
