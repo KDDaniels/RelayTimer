@@ -1,10 +1,10 @@
 #include "timer.h"
 
-extern volatile uint32_t timer0_millis;
 
 namespace
 {
     uint32_t now = 0;
+    uint32_t offset = 0;
 
     uint32_t timeRemaining = 0;
     uint32_t lastUpdate = 0;
@@ -26,14 +26,12 @@ namespace TIMER
 {
     void update()
     {
-        now = millis();
+        now = millis() - offset;
 
         if (now > 2592000000) // 30 days in milliseconds
         {
-            // Resets millis to 0 to avoid rollover
-            noInterrupts();
-            timer0_millis = 0;
-            interrupts();
+            // Handles overflow (hopefully)
+            offset = millis();
         }
     }
 
