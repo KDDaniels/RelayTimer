@@ -1576,7 +1576,7 @@
 		)
 		(fp_arc
 			(start 64.20104 22.49932)
-			(mid 64.054473 22.853115)
+			(mid 64.054479 22.85315)
 			(end 63.70066 22.9997)
 			(stroke
 				(width 0.12)
@@ -6085,7 +6085,7 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text "rev2.0"
+	(gr_text "rev2.2"
 		(at 156 136.95 20)
 		(layer "F.SilkS")
 		(uuid "00800e7e-97cd-4031-bbbe-f9a050fe3fbb")
