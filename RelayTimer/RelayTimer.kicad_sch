@@ -2255,10 +2255,6 @@
 		(color 0 0 0 0)
 		(uuid "f22084c4-7a02-4ea8-b76e-c6f143064d29")
 	)
-	(no_connect
-		(at 162.56 116.84)
-		(uuid "51e59133-4409-4936-81ce-0203adba23c9")
-	)
 	(wire
 		(pts
 			(xy 109.22 54.61) (xy 109.22 73.66)
@@ -2558,6 +2554,16 @@
 			(type default)
 		)
 		(uuid "65f439ac-637b-4475-80eb-824316796f30")
+	)
+	(wire
+		(pts
+			(xy 162.56 116.84) (xy 165.1 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6d040b87-6668-4b8d-887f-2e4a15191163")
 	)
 	(wire
 		(pts
@@ -5097,6 +5103,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 165.1 127 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d14c4518-6964-4c18-a083-e3b00503b3cb")
+		(property "Reference" "#PWR014"
+			(at 165.1 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 165.1 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 165.1 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 165.1 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 165.1 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2eb60961-3efb-4622-a1d2-e3fbc8c33cc6")
+		)
+		(instances
+			(project ""
+				(path "/c516751d-6636-4ecf-81a9-f6291dd07648"
+					(reference "#PWR014")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+5V")
 		(at 96.52 119.38 0)
 		(unit 1)
@@ -5457,6 +5529,76 @@
 			(project "RelayTimer"
 				(path "/c516751d-6636-4ecf-81a9-f6291dd07648"
 					(reference "R3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 165.1 121.92 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e4f89c21-23b7-48cd-8245-0a2283309b35")
+		(property "Reference" "SW1"
+			(at 168.91 120.6499 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "SW_Push"
+			(at 168.91 123.1899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm"
+			(at 170.18 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 170.18 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 165.1 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "72603005-bf8c-4bfc-a9f0-55e12fb688b1")
+		)
+		(pin "2"
+			(uuid "a1e658d2-30e1-49ab-a468-bf61850c99b5")
+		)
+		(instances
+			(project ""
+				(path "/c516751d-6636-4ecf-81a9-f6291dd07648"
+					(reference "SW1")
 					(unit 1)
 				)
 			)
